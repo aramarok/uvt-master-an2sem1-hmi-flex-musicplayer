@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+			 xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:mx="library://ns.adobe.com/flex/halo">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			static private const exclusions:Array=["contentGroup"];
+
+			override public function get colorizeExclusions():Array
+			{
+				return exclusions;
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Metadata>
+		[HostComponent("view.skin.MusicIconButton")]
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="up"
+				 stateGroups="_up"/>
+		<s:State name="over"
+				 stateGroups="_over"/>
+		<s:State name="down"
+				 stateGroups="_down"/>
+		<s:State name="disabled"
+				 stateGroups="_disabled"/>
+	</s:states>
+
+	<s:Group width="100%"
+			 height="100%">
+		<s:filters>
+			<s:BevelFilter highlightColor="#bce7fe"
+						   shadowColor="#000000"
+						   blurX="10"
+						   blurY="10"
+						   distance.up="8"
+						   distance.over="5"
+						   distance.down="2"/>
+		</s:filters>
+		<s:Ellipse width="100%"
+				   height="100%"
+				   rotation="0"
+				   rotationX="0"
+				   rotationY="0">
+			<s:fill>
+				<s:LinearGradient rotation="30">
+					<s:entries>
+						<s:GradientEntry color="0xeeeeee"
+										 ratio="0"/>
+						<s:GradientEntry color="#003568"
+										 ratio="1"/>
+					</s:entries>
+				</s:LinearGradient>
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color.up="0xaaaaaa"
+									color.over="0x999999"
+									weight="2"/>
+			</s:stroke>
+		</s:Ellipse>
+	</s:Group>
+
+	<s:HGroup id="contentGroup"
+			  top="10"
+			  left="15"
+			  bottom="12"
+			  right="15"
+			  verticalAlign="middle">
+
+		<s:BitmapImage source="{hostComponent.getStyle('icon')}"/>
+		<!--
+			 <s:BitmapImage source.up="{hostComponent.getStyle('icon')+'-normal.png'}"/>
+			 <s:BitmapImage source.over="{hostComponent.getStyle('icon')+'-over.png'}"/>
+			 <s:BitmapImage source.down="{hostComponent.getStyle('icon')+'-down.png'}"/>
+			 <s:BitmapImage source.disabled="{hostComponent.getStyle('icon')+'-normal.png'}"/>
+		-->
+		<s:Label text="{hostComponent.label}"
+				 color="{hostComponent.getStyle('color')}"/>
+	</s:HGroup>
+
+</s:SparkSkin>

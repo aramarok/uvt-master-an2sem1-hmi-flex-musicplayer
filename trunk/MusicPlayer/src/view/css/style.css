@@ -1,0 +1,85 @@
+/**
+West University of Timisoara
+Master; 2nd Year; Software Engineering
+10 January 2009
+
+Andrei Tolnai
+
+http://hmilab.wordpress.com/2009/11/18/hmi-proiect-1-music-player/
+*/
+
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+s|WindowedApplication {
+	backgroundColor: #0099ff;
+	backgroundGradientColors: #00ccff, #0033ff;
+	backgroundGradientAlphas: 1, 0.83;
+	themeColor: #009dff;
+	color: #000066;
+}
+
+s|Button {
+	color: #000066;
+	textRollOverColor: #0099ff;
+	textSelectedColor: #00ccff;
+	borderColor: #000033;
+	themeColor: #009dff;
+}
+
+s|HSlider {
+	labelOffset: -9;
+	thumbOffset: 1;
+	dataTipOffset: -2;
+	tickOffset: -4;
+	tickLength: 7;
+	tickThickness: 0;
+	tickColor: #0000ff;
+	showTrackHighlight: true;
+	invertThumbDirection: false;
+	borderColor: #00ccff;
+	trackColors: #000099, #ffffff;
+	themeColor: #000000;
+	fillAlphas: 1, 0.4, 0.75, 0.65;
+	fillColors: #00ccff, #cccccc, #ffffff, #eeeeee;
+}
+
+mx|DataGrid {
+	backgroundAlpha: 1;
+	backgroundColor: #cccccc;
+	alternatingItemColors: #00ffff, #00ccff;
+	headerColors: #ffffff, #0099ff;
+	horizontalGridLines: true;
+	letterSpacing: 0;
+	verticalGridLines: false;
+	useRollOver: true;
+	rollOverColor: #0066ff;
+	textRollOverColor: #000000;
+	borderThickness: 0;
+	borderColor: #00ffff;
+	selectionColor: #0066ff;
+	color: #0033ff;
+	textSelectedColor: #0b333c;
+	textIndent: 0;
+	dropShadowEnabled: false;
+}
+
+s|Panel {
+	borderStyle: none;
+	borderAlpha: 0;
+	cornerRadius: 10;
+	headerHeight: 31;
+	backgroundAlpha: 0.05;
+	highlightAlphas: 0.88, 0;
+	headerColors: #ffffff, #0033ff;
+	footerColors: #ffffff, #c7c7c7;
+	dropShadowEnabled: false;
+	titleStyleName: "mypanelTitle";
+}
+
+.mypanelTitle {
+	letterSpacing: 7;
+	color: #000000;
+	textAlign: center;
+	fontWeight: bold;
+}
