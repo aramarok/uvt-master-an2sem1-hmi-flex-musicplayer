@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	 West University of Timisoara
+	 Master; 2nd Year; Software Engineering
+	 10 January 2009
+
+	 Andrei Tolnai
+
+	 http://hmilab.wordpress.com/2009/11/18/hmi-proiect-1-music-player/
+-->
+
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/halo"
+					   xmlns:local="view.skin.*"
+					   left="0"
+					   top="0"
+					   height="785"
+					   width="526"
+					   creationComplete="initializea()"
+					   minWidth="526"
+					   minHeight="498">
+
+	<fx:Script source="view/scripts.as"/>
+	<fx:Style source="view/css/style.css"/>
+
+	<s:VGroup width="100%"
+			  height="100%"
+			  paddingTop="5"
+			  paddingLeft="5"
+			  paddingBottom="5"
+			  paddingRight="5">
+		<s:Panel title="Music Player"
+				 width="100%"
+				 height="185">
+
+			<s:Group height="100%"
+					 width="100%">
+				<s:VGroup width="100%">
+					<s:HGroup>
+						<local:MusicIconButton baseColor="#5dafff"
+											   color="#dff0ff"
+											   click="{onPlayPauseButtonPress()}"
+											   icon="{mainManager.playPauseButtonIcon}"/>
+						<local:MusicIconButton baseColor="#5dafff"
+											   color="#dff0ff"
+											   click="{mainManager.stop()}"
+											   icon="{mainManager.stopButtonIcon}"/>
+						<s:VGroup>
+							<s:Button label="next song"
+									  click="{nextSong()}"/>
+							<s:DropDownList id="playmode"
+											width="80"
+											selectedIndex="0"
+											change="playmodeDropDownChange(event)">
+								<s:dataProvider>
+									<s:ArrayList source="[,repeat,shuffle]"/>
+								</s:dataProvider>
+							</s:DropDownList>
+						</s:VGroup>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<s:HSlider id="hSlider"
+								   liveDragging="true"
+								   dataTipPrecision="2"
+								   stepSize="0.01"
+								   snapInterval="0.01"
+								   maximum="{mainManager.sliderMaximumValue}"
+								   value="{mainManager.sliderCurrentValue}"
+								   width="100%"
+								   change="hSliderChange(event)"/>
+					</s:HGroup>
+					<s:HGroup>
+						<s:VGroup width="300">
+							<s:HGroup>
+								<s:Label text="Artist: "/>
+								<s:Label id="artist"
+										 text="{mainManager.artistString}"/>
+							</s:HGroup>
+							<s:HGroup>
+								<s:Label text="Song: "/>
+								<s:Label id="song"
+										 text="{mainManager.songString}"/>
+							</s:HGroup>
+							<s:HGroup>
+								<s:Label text="Album: "/>
+								<s:Label id="album"
+										 text="{mainManager.albumString}"/>
+							</s:HGroup>
+						</s:VGroup>
+						<s:VGroup width="200">
+							<s:HGroup>
+								<s:Label text="Length: "/>
+								<s:Label id="length"
+										 text="{mainManager.playingTime}"/>
+							</s:HGroup>
+							<s:HGroup>
+								<s:Group click="onTimeClick(event)">
+									<s:Label text="Time elapsed:"
+											 visible="{mainManager.showTimeElapsed}"/>
+									<s:Label text="Time remaining:"
+											 visible="{!mainManager.showTimeElapsed}"/>
+								</s:Group>
+								<s:Group click="onTimeClick(event)">
+									<s:Label text="{mainManager.timeElapsed}"
+											 visible="{mainManager.showTimeElapsed}"/>
+									<s:Label text="{mainManager.timeRemaining}"
+											 visible="{!mainManager.showTimeElapsed}"/>
+								</s:Group>
+							</s:HGroup>
+						</s:VGroup>
+					</s:HGroup>
+				</s:VGroup>
+			</s:Group>
+		</s:Panel>
+
+		<s:Panel title="Playlist"
+				 width="100%"
+				 height="100%">
+			<s:Group height="100%"
+					 width="100%">
+				<s:VGroup width="100%"
+						  height="100%">
+					<s:HGroup width="100%"
+							  height="100%">
+						<mx:DataGrid id="datagrid"
+									 width="100%"
+									 height="100%"
+									 dataProvider="{playlistManager.playlist}"
+									 doubleClickEnabled="true"
+									 itemDoubleClick="onDataGridDoubleClick(event)"
+									 allowMultipleSelection="true">
+							<mx:columns>
+								<mx:DataGridColumn dataField="artistName"
+												   headerText="Artist"
+												   width="50"/>
+								<mx:DataGridColumn dataField="songName"
+												   headerText="Song"
+												   width="90"/>
+								<mx:DataGridColumn dataField="filePath"
+												   headerText="Path"
+												   width="140"/>
+							</mx:columns>
+						</mx:DataGrid>
+					</s:HGroup>
+					<s:HGroup>
+						<s:Button label="ID3 info"
+								  click="{id3Info()}"/>
+						<s:Button label="add file(s)"
+								  click="{addFile()}"/>
+						<s:Button label="add folder"
+								  click="{addFolder()}"/>
+						<s:Button label="delete selection"
+								  click="{deleteSelection()}"/>
+						<s:Button label="clear playlist"
+								  click="{clearPlaylist()}"/>
+					</s:HGroup>
+					<s:HGroup>
+						<s:Group click="onTimeClick(event)">
+							<s:Label text="Time elapsed:"
+									 visible="{mainManager.showTimeElapsed}"/>
+							<s:Label text="Time remaining:"
+									 visible="{!mainManager.showTimeElapsed}"/>
+						</s:Group>
+						<s:Group click="onTimeClick(event)">
+							<s:Label text="{mainManager.timeElapsed}"
+									 visible="{mainManager.showTimeElapsed}"/>
+							<s:Label text="{mainManager.timeRemaining}"
+									 visible="{!mainManager.showTimeElapsed}"/>
+						</s:Group>
+					</s:HGroup>
+				</s:VGroup>
+			</s:Group>
+		</s:Panel>
+	</s:VGroup>
+</s:WindowedApplication>
